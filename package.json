@@ -1,0 +1,14 @@
+{
+  "name": "hark-mcp-proxy",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "Lightweight stdio-to-HTTP proxy that connects Claude Desktop to the Hark MCP server.",
+  "scripts": {
+    "build": "tsc",
+    "pack:mcpb": "bash scripts/pack-mcpb-proxy.sh"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "typescript": "^6.0.3"
+  }
+}

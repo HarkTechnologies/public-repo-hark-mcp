@@ -1,0 +1,70 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/mcpb/main/schemas/mcpb-manifest-v0.4.schema.json",
+  "manifest_version": "0.4",
+  "name": "hark",
+  "display_name": "Hark",
+  "version": "1.0.1",
+  "description": "Query your Hark customer feedback — trends, search, sentiment, and tickets.",
+  "long_description": "Connect Claude to your Hark workspace via HTTP. Ask about trending topics, search tickets and feedback, and get sentiment breakdowns for your customer data. This is a lightweight proxy that connects to your Hark MCP server. \n\nThis integration is what lets you query Hark data from your own Claude account. When you use it, questions and data pass through your existing Claude conversation, under your own agreement with Anthropic — Hark does not separately transmit your data to Anthropic through this integration. This is separate from any use of AI providers within the Hark platform itself, which is governed by your Hark agreement.",
+  "author": {
+    "name": "Hark",
+    "url": "https://sendhark.com"
+  },
+  "homepage": "https://sendhark.com",
+  "icon": "icon.png",
+  "icons": [
+    {
+      "src": "icon.png",
+      "size": "512x512",
+      "theme": "light"
+    },
+    {
+      "src": "icon-dark.svg",
+      "size": "512x512",
+      "theme": "dark"
+    }
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "server/proxy-client.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/proxy-client.js"
+      ],
+      "env": {
+        "HARK_API_TOKEN": "${user_config.api_token}",
+        "HARK_MCP_SERVER_URL": "https://mcp.sendhark.com/mcp"
+      }
+    }
+  },
+  "tools_generated": true,
+  "prompts_generated": true,
+  "user_config": {
+    "api_token": {
+      "type": "string",
+      "title": "Hark API Token",
+      "description": "Your API token from the Hark Team",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": [
+    "hark",
+    "customer-feedback",
+    "support",
+    "analytics",
+    "proxy"
+  ]
+}
